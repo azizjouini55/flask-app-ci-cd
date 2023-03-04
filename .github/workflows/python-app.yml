@@ -48,5 +48,5 @@ jobs:
         logout: true
     - name: Push Docker image to Docker Hub
       run: |
-          docker push azizjouini/myapp:latest
+          docker push myapp:latest
    
