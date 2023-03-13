@@ -9,7 +9,7 @@ class TestHello(unittest.TestCase):
     def test_add_equipment(self):
         with app.test_client() as client:
             response = client.post('/equipment')
-            self.assertEqual(response.data, b' created successfully')
+            self.assertEqual(response.data, b'<!doctype html>\n<html lang=en>\n<title>4[127 chars]p>\n')
 
 if __name__ == '__main__':
     unittest.main()

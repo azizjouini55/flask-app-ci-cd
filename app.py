@@ -21,7 +21,7 @@ def create_user():
     # Insert data into MongoDB
     db.equipment.insert_one(data)
     # Return success response
-    return {' created successfully'}
+    return {'message': ' created successfully'}
 
 @app.route('/equipment', methods=['GET'])
 def get_equipment():
