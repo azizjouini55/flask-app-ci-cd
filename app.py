@@ -1,7 +1,7 @@
 from flask import Flask 
 from flask import request
 from pymongo import MongoClient
-#from bson import ObjectId
+from bson import ObjectId
 
 
 
@@ -27,6 +27,8 @@ def create_user():
 def get_equipment():
     # Retrieve all equipment from MongoDB
     equipment = list(db.equipment.find())
+    if len(equipment)==0:
+         return {'no items were found'}
     # Convert ObjectId to string
     for eq in equipment:
         eq['_id'] = str(eq['_id'])
@@ -35,26 +37,29 @@ def get_equipment():
 
 @app.route('/equipment/all', methods=['GET'])
 def get_all_equipment():
+
     # Retrieve all equipment from MongoDB
     equipment = list(db.equipment.find())
+    if len(equipment)==0:
+         return {'no items were found'}
     return {'equipment': equipment}
 
-#@app.route('/equipment/<id>', methods=['PUT'])
-#def update_user(id):
+@app.route('/equipment/<id>', methods=['PUT'])
+def update_user(id):
     # Get data from request body
-#    data = request.json
+    data = request.json
     # Update data in MongoDB
-#    db.equipment.update_one({'_id': ObjectId(id)}, {'$set': data})
-#    # Return success response
-#    return {'message': 'User updated successfully'}
+    db.equipment.update_one({'_id': ObjectId(id)}, {'$set': data})
+   # Return success response
+    return {'message': 'User updated successfully'}
 
 
-##@app.route('/equipment/<id>', methods=['DELETE'])
-#def delete_user(id):
+@app.route('/equipment/<id>', methods=['DELETE'])
+def delete_user(id):
     # Delete user from MongoDB
-   # db.equipment.delete_one({'_id': ObjectId(id)})
+    db.equipment.delete_one({'_id': ObjectId(id)})
     # Return success response
-  #  return {'message': ' deleted successfully'}
+    return {'message': ' deleted successfully'}
 
 
 
