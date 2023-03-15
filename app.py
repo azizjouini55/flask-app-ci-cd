@@ -5,7 +5,7 @@ from bson import ObjectId
 
 
 
-client = MongoClient('mongodb://mongo:27017/mydatabase', 27017)
+client = MongoClient('mongodb://my-mongodb.default.svc.cluster.local:27017/mydatabase', 27017)
 db = client.inventoryDB
 
 app = Flask(__name__) 
